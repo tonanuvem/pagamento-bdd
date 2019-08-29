@@ -10,14 +10,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.client.RestTemplate;
 
-/*
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
-import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.test.context.junit4.SpringRunner;*/
-
 import static org.junit.Assert.*;
 
 public class Stepdefs {
@@ -29,7 +21,7 @@ public class Stepdefs {
     @Dado("Que cliente finalizou a compra do seu Carrinho de Compras")
     public void que_cliente_finalizou_a_compra_do_seu_Carrinho_de_Compras() {
         // HttpRequestTest
-        TestRestTemplate restTemplate = new TestRestTemplate();
+        RestTemplate restTemplate = new RestTemplate();
         String s = restTemplate.getForObject("http://localhost:8080/", String.class);
         assertTrue(s.contains("Pagamento"));
     }
