@@ -1,0 +1,55 @@
+package bddgof;
+
+import cucumber.api.java.pt.Dado;
+import cucumber.api.java.pt.Quando;
+import cucumber.api.java.pt.Entao;
+
+import test.java.bddgof.PagamentoTeste;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.client.RestTemplate;
+
+/*
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.test.context.junit4.SpringRunner;*/
+
+import static org.junit.Assert.*;
+
+public class Stepdefs {
+
+    private static String tipo;
+    private static Integer valor;
+
+
+    @Dado("Que cliente finalizou a compra do seu Carrinho de Compras")
+    public void que_cliente_finalizou_a_compra_do_seu_Carrinho_de_Compras() {
+        // HttpRequestTest
+        TestRestTemplate restTemplate = new TestRestTemplate();
+        String s = restTemplate.getForObject("http://localhost:8080/", String.class);
+        assertTrue(s.contains("Pagamento"));
+    }
+
+    @Quando("Escolhe a opcao de pagamento: {string}")
+    public void escolhe_a_opcao_de_pagamento(String string) {
+        Stepdefs.tipo = string;
+    }
+
+    @Quando("clica em finalizar Pagamento: {int}")
+    public void clica_em_finalizar_Pagamento(Integer int1) {
+        Stepdefs.valor = int1;
+    }
+
+    @Entao("O pagamento tem que ser concluido com sucesso: {string}")
+    public void o_pagamento_tem_que_ser_concluido_com_sucesso(String string) {
+        RestTemplate restTemplate = new RestTemplate();
+        String url = "http://localhost:8080/pagamento?tipo_pagamento="+tipo+"&valor_pagamento="+valor;
+        PagamentoTeste pagamentoTeste = restTemplate.getForObject(url, PagamentoTeste.class);
+        assertEquals(pagamentoTeste.getStatusPagamento(), string);
+    }
+
+}
