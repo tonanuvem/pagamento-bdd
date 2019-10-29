@@ -20,3 +20,4 @@ Funcionalidade: Venda de produtos para Loja
         | "DINHEIRO"      | 50     | "Pagamento em Dinheiro processado com sucesso" |
         | "DINHEIRO"      | 500    | "Pagamento em Dinheiro processado com sucesso" |
         | "DINHEIRO"      | 5000   | "Pagamento em Dinheiro processado com sucesso" |
+        | "DINHEIRO"      | -1     | "Pagamento em Dinheiro processado com sucesso" |
