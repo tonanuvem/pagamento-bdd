@@ -4,7 +4,7 @@ import cucumber.api.java.pt.Dado;
 import cucumber.api.java.pt.Quando;
 import cucumber.api.java.pt.Entao;
 
-import test.java.bddgof.PagamentoTeste;
+import bddgof.PagamentoTeste;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
