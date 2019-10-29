@@ -1,4 +1,4 @@
-package test.java.bddgof;
+package bddgof;
 
 //import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
