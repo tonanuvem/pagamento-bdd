@@ -16,13 +16,15 @@ public class Stepdefs {
 
     private static String tipo;
     private static Integer valor;
+    
+    private static String endpoint = "http://localhost:8080/";
 
 
     @Dado("Que cliente finalizou a compra do seu Carrinho de Compras")
     public void que_cliente_finalizou_a_compra_do_seu_Carrinho_de_Compras() {
         // HttpRequestTest
         RestTemplate restTemplate = new RestTemplate();
-        String s = restTemplate.getForObject("http://localhost:8080/", String.class);
+        String s = restTemplate.getForObject(endpoint, String.class);
         assertTrue(s.contains("Pagamento"));
     }
 
@@ -39,7 +41,7 @@ public class Stepdefs {
     @Entao("O pagamento tem que ser concluido com sucesso: {string}")
     public void o_pagamento_tem_que_ser_concluido_com_sucesso(String string) {
         RestTemplate restTemplate = new RestTemplate();
-        String url = "http://localhost:8080/pagamento?tipo_pagamento="+tipo+"&valor_pagamento="+valor;
+        String url = endpoint+"/pagamento?tipo_pagamento="+tipo+"&valor_pagamento="+valor;
         PagamentoTeste pagamentoTeste = restTemplate.getForObject(url, PagamentoTeste.class);
         assertEquals(pagamentoTeste.getStatusPagamento(), string);
     }
