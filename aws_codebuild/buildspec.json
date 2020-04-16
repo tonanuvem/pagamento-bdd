@@ -1,0 +1,50 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: openjdk8
+    commands:
+      - git clone https://github.com/tonanuvem/pagamento-spring-rest-gof.git
+      - git clone https://github.com/tonanuvem/pagamento-bdd-gof.git
+  #pre_build:
+    #commands:
+      # - command
+      # - command
+  build:
+    commands:
+    # teste unitario da aplicacao
+      - cd pagamento-spring-rest-gof
+      - mvn test && mvn package
+    # rodar aplicacao
+      - nohup java -jar target/padroesgof-0.0.1-SNAPSHOT.jar > logfile.log 2>&1 &
+    # testes integrados
+      - tail -f logfile.log |grep -m 1 "Started DemoPagamento" | xargs echo "" >> logfile \;
+      - cd ../pagamento-bdd-gof
+      - mvn test
+  # post_build:
+    # commands:
+      # - 
+      # - command
+      # - command
+      
+#reports:
+  #report-name-or-arn:
+    #files:
+      # - location
+      # - location
+    #base-directory: location
+    #discard-paths: yes
+    #file-format: JunitXml | CucumberJson
+    
+#artifacts:
+  #files:
+    # - location
+    # - location
+  #name: $(date +%Y-%m-%d)
+  #discard-paths: yes
+  #base-directory: location
+  
+#cache:
+  #paths:
+    # - paths
