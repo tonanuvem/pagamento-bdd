@@ -15,27 +15,23 @@ phases:
     commands:
     # teste unitario da aplicacao
       - cd pagamento-spring-rest-gof
-      - mvn test && mvn package
+      - mvn -q test && mvn -q package
     # rodar aplicacao
       - nohup java -jar target/padroesgof-0.0.1-SNAPSHOT.jar > logfile.log 2>&1 &
     # testes integrados
       - tail -f logfile.log |grep -m 1 "Started DemoPagamento" | xargs echo "" >> logfile \;
       - cd ../pagamento-bdd-gof
-      - mvn test
+      - mvn --no-transfer-progress test
   # post_build:
     # commands:
-      # - 
-      # - command
       # - command
       
-#reports:
-  #report-name-or-arn:
-    #files:
-      # - location
-      # - location
-    #base-directory: location
-    #discard-paths: yes
-    #file-format: JunitXml | CucumberJson
+reports:
+  reportGroupCucumberJson:
+    files:
+      - 'pagamento-bdd-gof/target/cucumber.json'
+    discard-paths: yes
+    file-format: CucumberJson # default is JunitXml
     
 #artifacts:
   #files:
