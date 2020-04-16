@@ -10,7 +10,6 @@ phases:
   #pre_build:
     #commands:
       # - command
-      # - command
   build:
     commands:
     # teste unitario da aplicacao
