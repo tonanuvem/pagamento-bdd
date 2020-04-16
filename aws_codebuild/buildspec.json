@@ -7,9 +7,11 @@ phases:
     commands:
       - git clone https://github.com/tonanuvem/pagamento-spring-rest-gof.git
       - git clone https://github.com/tonanuvem/pagamento-bdd-gof.git
+
   #pre_build:
     #commands:
       # - command
+
   build:
     commands:
     # teste unitario da aplicacao
@@ -22,6 +24,7 @@ phases:
       # le o arquivo de log e só continua quando a aplicação estiver no AR
       - cd ../pagamento-bdd-gof
       - mvn --no-transfer-progress test
+
   # post_build:
     # commands:
       # - command
