@@ -35,8 +35,10 @@ reports:
       - 'pagamento-bdd-gof/target/cucumber.json'
     discard-paths: yes
     file-format: CucumberJson # default is JunitXml
-    
-#artifacts:
+
+artifacts:
+  files:
+    - '**/*'
   #files:
     # - location
     # - location
