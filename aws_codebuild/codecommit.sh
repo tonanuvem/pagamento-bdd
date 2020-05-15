@@ -1,6 +1,6 @@
 echo "Criar o Repositório do Projeto de Testes BDD:"
 aws codecommit create-repository --repository-name bddtestes --repository-description "Testes BDD dos Microserviços" --region us-east-1
-echo "Configurar as credenciais
+echo "Configurar as credenciais"
 git config --global credential.helper '!aws codecommit credential-helper $@'
 git config --global credential.UseHttpPath true
 echo "Salvar o código fonte do Projeto de Testes BDD:"
